@@ -14,10 +14,10 @@ const modules = [
   {
     title: 'Continue Learning',
     courses: [
-      { title: 'Aula #001 → O que gostaria de saber antes? Parte 01', duration: '10:00', image: 'https://images.unsplash.com/photo-1558572687-df2e1e142ea3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8OSUzQTE2fGVufDB8fDB8fHww', video: 'https://player.vimeo.com/video/1008575104?badge=0&amp;autopause=0&amp;player_id=0&amp' },
+      { title: 'Aula #001 → O que gostaria de saber antes? Parte 01', duration: '10:00', image: '/thumb.jpg', video: 'https://player.vimeo.com/video/1008575104?badge=0&amp;autopause=0&amp;player_id=0&amp' },
       { title: 'Aula #002 → O que gostaria de saber antes? Parte 02', duration: '10:00', image: 'https://images.unsplash.com/photo-1558572687-df2e1e142ea3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8OSUzQTE2fGVufDB8fDB8fHww', video: 'https://player.vimeo.com/video/1008575201?badge=0&amp;autopause=0&amp;player_id=0&amp' },
-      { title: 'EXTRA #001: Ferramentas para começar', duration: '14:00', image: 'https://images.unsplash.com/photo-1558572687-df2e1e142ea3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8OSUzQTE2fGVufDB8fDB8fHww', video: 'https://player.vimeo.com/video/1008577242?badge=0&amp;autopause=0&amp;player_id=0&amp' },
-      { title: 'EXTRA #002: Criando um (belo) site em 26 minutos', duration: '26:00', image: 'https://images.unsplash.com/photo-1558572687-df2e1e142ea3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8OSUzQTE2fGVufDB8fDB8fHww', video: 'https://player.vimeo.com/video/1009311054?badge=0&amp;autopause=0&amp' },
+      { title: 'EXTRA #001: Ferramentas para começar', duration: '14:00', image: '/ferramentas.jpg', video: 'https://player.vimeo.com/video/1008577242?badge=0&amp;autopause=0&amp;player_id=0&amp' },
+      { title: 'EXTRA #002: Criando um (belo) site em 26 minutos', duration: '26:00', image: '/vídeo.png', video: 'https://player.vimeo.com/video/1009311054?badge=0&amp;autopause=0&amp' },
     ],
     tasks: [
       { title: 'Complete HTML Basics quiz', completed: false },
@@ -63,7 +63,7 @@ export function CoursePlatform() {
   const [currentModule, setCurrentModule] = useState(0)
   const [currentCourse, setCurrentCourse] = useState(0)
   const [completedCourses, setCompletedCourses] = useState<{[key: number]: number[]}>({})
-  const [activeTab, setActiveTab] = useState('Home')
+  const [activeTab, setActiveTab] = useState('Home 🏠')
   const [showVideo, setShowVideo] = useState(false)
   const [currentShort, setCurrentShort] = useState(0)
   const [showShortVideo, setShowShortVideo] = useState(false)
@@ -106,7 +106,7 @@ export function CoursePlatform() {
     } else {
       // All modules completed
       setShowVideo(false)
-      setActiveTab('My Progress')
+      setActiveTab('My Progres ⏳')
     }
   }
 
@@ -368,7 +368,7 @@ export function CoursePlatform() {
               </div>
             </div>
           </div>
-        ) : activeTab === 'Home' ? (
+        ) : activeTab === 'Home 🏠' ? (
           <>
             {modules.map((module, moduleIndex) => (
               <div key={moduleIndex} className="mb-8">
@@ -404,9 +404,9 @@ export function CoursePlatform() {
             ))}
             {renderShorts()}
           </>
-        ) : activeTab === 'Shorts' ? (
+        ) : activeTab === 'Shorts 🔥' ? (
           renderAllShorts()
-        ) : activeTab === 'Tasks' ? (
+        ) : activeTab === 'Tasks ☑️' ? (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold mb-4">Tasks</h2>
             {modules.map((module, moduleIndex) => (
@@ -425,7 +425,7 @@ export function CoursePlatform() {
               </div>
             ))}
           </div>
-        ) : activeTab === 'My Progress' ? (
+        ) : activeTab === 'My Progress ⏳' ? (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold mb-4">My Progress</h2>
             <Progress value={progress} className="w-full" />
@@ -455,10 +455,10 @@ export function CoursePlatform() {
       <nav className="sticky bottom-0 bg-background border-t bg-white text-black">
         <div className="flex justify-around py-2">
           {[
-            { icon: Home, label: 'Home' },
-            { icon: BookOpen, label: 'Shorts' },
-            { icon: CheckSquare, label: 'Tasks' },
-            { icon: BarChart2, label: 'My Progress' },
+            { icon: Home, label: 'Home 🏠' },
+            { icon: BookOpen, label: 'Shorts 🔥' },
+            { icon: CheckSquare, label: 'Tasks ☑️' },
+            { icon: BarChart2, label: 'My Progress ⏳' },
           ].map((item, index) => (
             <Button
               key={index}
