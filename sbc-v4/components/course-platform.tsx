@@ -14,10 +14,10 @@ const modules = [
   {
     title: 'Continue Learning',
     courses: [
-      { title: 'HTML Basics', duration: '10:15', image: '/placeholder.svg?height=200&width=300', video: 'https://player.vimeo.com/video/336265026' },
-      { title: 'CSS Fundamentals', duration: '15:30', image: '/placeholder.svg?height=200&width=300', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4' },
-      { title: 'JavaScript Essentials', duration: '20:45', image: '/placeholder.svg?height=200&width=300', video: 'https://player.vimeo.com/video/336265026' },
-      { title: 'React Fundamentals', duration: '25:00', image: '/placeholder.svg?height=200&width=300', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4' },
+      { title: 'Aula #001 → O que gostaria de saber antes? Parte 01', duration: '10:00', image: '/placeholder.svg?height=200&width=300', video: 'https://player.vimeo.com/video/1008575104?badge=0&amp;autopause=0&amp;player_id=0&amp' },
+      { title: 'Aula #002 → O que gostaria de saber antes? Parte 02', duration: '10:00', image: '/placeholder.svg?height=200&width=300', video: 'https://player.vimeo.com/video/1008575201?badge=0&amp;autopause=0&amp;player_id=0&amp' },
+      { title: 'EXTRA #001: Ferramentas para começar', duration: '14:00', image: '/placeholder.svg?height=200&width=300', video: 'https://player.vimeo.com/video/1008577242?badge=0&amp;autopause=0&amp;player_id=0&amp' },
+      { title: 'EXTRA #002: Criando um (belo) site em 26 minutos', duration: '26:00', image: '/placeholder.svg?height=200&width=300', video: 'https://player.vimeo.com/video/1009311054?badge=0&amp;autopause=0&amp' },
     ],
     tasks: [
       { title: 'Complete HTML Basics quiz', completed: false },
