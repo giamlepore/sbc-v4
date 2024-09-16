@@ -12,51 +12,53 @@ import { motion } from "framer-motion"
 
 const modules = [
   {
-    title: 'Continue Learning',
+    title: 'O seu primeiro módulo aqui',
     courses: [
       { title: 'Aula #001 → O que gostaria de saber antes? Parte 01', duration: '10:00', image: '/thumb.jpg', video: 'https://player.vimeo.com/video/1008575104?badge=0&amp;autopause=0&amp;player_id=0&amp' },
-      { title: 'Aula #002 → O que gostaria de saber antes? Parte 02', duration: '10:00', image: 'https://images.unsplash.com/photo-1558572687-df2e1e142ea3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8OSUzQTE2fGVufDB8fDB8fHww', video: 'https://player.vimeo.com/video/1008575201?badge=0&amp;autopause=0&amp;player_id=0&amp' },
+      { title: 'Aula #002 → O que gostaria de saber antes? Parte 02', duration: '10:00', image: '/thumb.jpg', video: 'https://player.vimeo.com/video/1008575201?badge=0&amp;autopause=0&amp;player_id=0&amp' },
       { title: 'EXTRA #001: Ferramentas para começar', duration: '14:00', image: '/ferramentas.jpg', video: 'https://player.vimeo.com/video/1008577242?badge=0&amp;autopause=0&amp;player_id=0&amp' },
       { title: 'EXTRA #002: Criando um (belo) site em 26 minutos', duration: '26:00', image: '/vídeo.png', video: 'https://player.vimeo.com/video/1009311054?badge=0&amp;autopause=0&amp' },
     ],
     tasks: [
-      { title: 'Complete HTML Basics quiz', completed: false },
-      { title: 'Submit CSS project', completed: false },
+      { title: 'Escolha a ferramenta que você vai documentar seus aprendizados. (Coda, Notion, Trello, Asana são algumas possibilidades)', completed: false },
+      { title: 'Defina quais ferramentas você vai utilizar repetidamente, aprofunde nelas (Framer, v0.dev, ChatGPT, Google Analytics, Google Search Console, Google Tag Manager, Clarity são algumas delas.', completed: false },
+      { title: 'Reflita sobre "O que é um jogo pra você, e trabalho para os outros?"', completed: false },
+      { title: 'É mais rápido para você colocar algo no ar, ou fazer todas as entrevistas antes?"', completed: false },
     ]
   },
   {
-    title: 'Introduction to Web Development',
+    title: 'Módulo 02, em breve',
     courses: [
-      { title: 'HTML Basics', duration: '10:15', image: 'https://images.unsplash.com/photo-1558572687-df2e1e142ea3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8OSUzQTE2fGVufDB8fDB8fHww', video: 'https://player.vimeo.com/video/336265026' },
-      { title: 'CSS Fundamentals', duration: '15:30', image: 'https://images.unsplash.com/photo-1558572687-df2e1e142ea3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8OSUzQTE2fGVufDB8fDB8fHww', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4' },
-      { title: 'JavaScript Essentials', duration: '20:45', image: 'https://images.unsplash.com/photo-1558572687-df2e1e142ea3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8OSUzQTE2fGVufDB8fDB8fHww', video: 'https://player.vimeo.com/video/336265026' },
+      { title: 'Em construção', duration: '10:15', image: '/soon.jpg', video: 'https://player.vimeo.com/video/336265026' },
+      { title: 'Muito em breve, por aqui', duration: '15:30', image: '/soon.jpg', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4' },
+      { title: 'Esse será chocante', duration: '20:45', image: '/soon.jpg', video: 'https://player.vimeo.com/video/336265026' },
     ],
     tasks: [
-      { title: 'Set up development environment', completed: false },
-      { title: 'Create first HTML page', completed: false },
+      { title: 'Sem tarefas, por enquanto', completed: false },
+      { title: 'Sem tarefas, por enquanto', completed: false },
     ]
   },
   {
-    title: 'Advanced Frontend Development',
+    title: 'Módulo 03, mais perto do que você imagina',
     courses: [
-      { title: 'React Fundamentals', duration: '25:00', image: 'https://images.unsplash.com/photo-1558572687-df2e1e142ea3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8OSUzQTE2fGVufDB8fDB8fHww', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4' },
-      { title: 'State Management', duration: '18:20', image: 'https://images.unsplash.com/photo-1558572687-df2e1e142ea3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8OSUzQTE2fGVufDB8fDB8fHww', video: 'https://player.vimeo.com/video/336265026' },
-      { title: 'Responsive Design', duration: '22:10', image: 'https://images.unsplash.com/photo-1558572687-df2e1e142ea3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8OSUzQTE2fGVufDB8fDB8fHww', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4' },
+      { title: 'Por essa aula, estou ansioso', duration: '25:00', image: '/soon.jpg', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4' },
+      { title: 'Essa daqui, você nem imagina', duration: '18:20', image: '/soon.jpg', video: 'https://player.vimeo.com/video/336265026' },
+      { title: 'Já essa aula, é muito diferente', duration: '22:10', image: '/soon.jpg', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4' },
     ],
     tasks: [
-      { title: 'Build a React component', completed: false },
-      { title: 'Implement Redux in a project', completed: false },
+      { title: 'Sem tarefas, por enquanto', completed: false },
+      { title: 'Sem tarefas, por enquanto', completed: false },
     ]
   },
 ]
 
 const shorts = [
-  { title: '5 HTML Tips', duration: '1:00', image: 'https://images.unsplash.com/photo-1725714835781-5bd067b81a8c?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
-  { title: 'CSS Tricks', duration: '0:45', image: 'https://images.unsplash.com/photo-1584583570840-0a3d88497593?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fDklM0ExNnxlbnwwfHwwfHx8MA%3D%3D', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4' },
-  { title: 'Quick JS Hack', duration: '1:30', image: 'https://images.unsplash.com/photo-1560356062-e67bd9e034d5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fDklM0ExNnxlbnwwfHwwfHx8MA%3D%3D', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4' },
-  { title: 'React Hooks in 60s', duration: '1:00', image: 'https://images.unsplash.com/photo-1563277085-2a458f50d554?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fDklM0ExNnxlbnwwfHwwfHx8MA%3D%3D2', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4' },
-  { title: 'Redux Simplified', duration: '1:15', image: 'https://images.unsplash.com/photo-1565431792530-7eda5a86d510?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fDklM0ExNnxlbnwwfHwwfHx8MA%3D%3D', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4' },
-  { title: 'Flexbox vs Grid', duration: '0:50', image: 'https://images.unsplash.com/photo-1610274561976-4b5528f54992?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fDklM0ExNnxlbnwwfHwwfHx8MA%3D%3D', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4' },
+  { title: 'Beta 01', duration: '1:00', image: 'soon.gif', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
+  { title: 'Beta 02', duration: '0:45', image: 'soon2.gif', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4' },
+  { title: 'Beta 03', duration: '1:30', image: 'soon.gif', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4' },
+  { title: 'Beta 04', duration: '1:00', image: 'https://images.unsplash.com/photo-1563277085-2a458f50d554?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fDklM0ExNnxlbnwwfHwwfHx8MA%3D%3D2', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4' },
+  { title: 'Beta 05', duration: '1:15', image: 'https://images.unsplash.com/photo-1565431792530-7eda5a86d510?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fDklM0ExNnxlbnwwfHwwfHx8MA%3D%3D', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4' },
+  { title: 'Beta 06', duration: '0:50', image: 'https://images.unsplash.com/photo-1610274561976-4b5528f54992?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fDklM0ExNnxlbnwwfHwwfHx8MA%3D%3D', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4' },
 ]
 
 export function CoursePlatform() {
