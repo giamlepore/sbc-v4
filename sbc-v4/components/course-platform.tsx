@@ -58,7 +58,7 @@ const shorts = [
   { title: 'Entender de Tech', duration: '1:30', video2: 'https://player.vimeo.com/video/1010369636?autoplay=1&loop=1&muted=1&autopause=0', video: 'https://player.vimeo.com/video/1010369636?autoplay=1' },
   { title: '3 tipos de PMs', duration: '1:00', video2: 'https://player.vimeo.com/video/1010369598?autoplay=1&loop=1&muted=1&autopause=0', video: 'https://player.vimeo.com/video/1010369598?autoplay=1' },
   { title: 'Progresso vs Movimento', duration: '1:15', video2: 'https://player.vimeo.com/video/1010369754?autoplay=1&loop=1&muted=1&autopause=0', video: 'https://player.vimeo.com/video/1010369754?autoplay=1' },
-  { title: 'Contexto Importa', duration: '0:50', video2: 'https://player.vimeo.com/video/1010369687?autoplay=1&loop=1&muted=1&autopause=0', video: 'https://player.vimeo.com/video/1010369687?autoplay=1' },
+  { title: 'Contexto Importa', duration: '0:50', video2: 'https://player.vimeo.com/video/1010369779?autoplay=1&loop=1&muted=1&autopause=0', video: 'https://player.vimeo.com/video/1010369779?autoplay=1' },
 ]
 
 export function CoursePlatform() {
@@ -386,12 +386,12 @@ export function CoursePlatform() {
               onTouchEnd={handleTouchEnd}
               style={{ zIndex: 10 }}
             >
-            <motion.div
+            {/* <motion.div
               className="absolute w-full h-full"
               initial={{ y: 0 }}
               animate={{ y: isSwiping ? (touchStart - touchEnd > 50 ? '-100%' : '100%') : '0%' }}
               transition={{ duration: 0.3 }}
-            ></motion.div>
+            ></motion.div> */}
               {/* <video
                 className="w-full h-full object-cover"
                 src={shorts[currentShort].video}
