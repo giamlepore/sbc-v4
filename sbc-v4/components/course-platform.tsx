@@ -68,6 +68,7 @@ export function CoursePlatform() {
   const [activeTab, setActiveTab] = useState('Home 🏠')
   const [showVideo, setShowVideo] = useState(false)
   const [currentShort, setCurrentShort] = useState(0)
+  const [isSwiping, setIsSwiping] = useState(false); // Para controlar o estado da animação
   const [showShortVideo, setShowShortVideo] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
@@ -143,9 +144,17 @@ export function CoursePlatform() {
 
   const handleSwipe = (direction: 'up' | 'down') => {
     if (direction === 'up' && currentShort < shorts.length - 1) {
-      setCurrentShort(currentShort + 1)
+      setIsSwiping(true); // Inicia a animação
+      setTimeout(() => {
+        setCurrentShort(currentShort + 1);
+        setIsSwiping(false); // Termina a animação
+      }, 300); // Tempo da animação
     } else if (direction === 'down' && currentShort > 0) {
-      setCurrentShort(currentShort - 1)
+      setIsSwiping(true); // Inicia a animação
+      setTimeout(() => {
+        setCurrentShort(currentShort - 1);
+        setIsSwiping(false); // Termina a animação
+      }, 300); // Tempo da animação
     }
   }
 
@@ -377,6 +386,12 @@ export function CoursePlatform() {
               onTouchEnd={handleTouchEnd}
               style={{ zIndex: 10 }}
             >
+            <motion.div
+              className="absolute w-full h-full"
+              initial={{ y: 0 }}
+              animate={{ y: isSwiping ? (touchStart - touchEnd > 50 ? '-100%' : '100%') : '0%' }}
+              transition={{ duration: 0.3 }}
+            ></motion.div>
               {/* <video
                 className="w-full h-full object-cover"
                 src={shorts[currentShort].video}
