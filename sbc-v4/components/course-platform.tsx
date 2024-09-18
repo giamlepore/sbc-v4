@@ -362,11 +362,20 @@ export function CoursePlatform() {
           </div>
         ) : showShortVideo ? (
           <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+            <div className="relative w-full h-full">
+            <iframe
+                className="w-full h-full object-cover"
+                src={shorts[currentShort].video}
+                frameBorder="0"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+              ></iframe>
             <div 
-              className="relative w-full h-full"
+              className="absolute inset-0"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
+              style={{ zIndex: 10 }}
             >
               {/* <video
                 className="w-full h-full object-cover"
@@ -375,15 +384,8 @@ export function CoursePlatform() {
                 loop
                 controls
               /> */}
-              <iframe
-                src={shorts[currentShort].video}
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-              <div className="absolute top-4 right-4">
+              </div>
+              <div className="absolute top-4 right-4" style={{ zIndex: 11 }}>
                 <Button variant="ghost" onClick={() => setShowShortVideo(false)}>
                   <X className="h-6 w-6 text-white" />
                 </Button>
