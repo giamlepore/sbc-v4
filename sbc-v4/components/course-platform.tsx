@@ -53,12 +53,12 @@ const modules = [
 ]
 
 const shorts = [
-  { title: 'Beta 01', duration: '1:00', image: 'soon.gif', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
-  { title: 'Beta 02', duration: '0:45', image: 'soon2.gif', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4' },
-  { title: 'Beta 03', duration: '1:30', image: 'soon.gif', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4' },
-  { title: 'Beta 04', duration: '1:00', image: 'https://images.unsplash.com/photo-1563277085-2a458f50d554?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fDklM0ExNnxlbnwwfHwwfHx8MA%3D%3D2', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4' },
-  { title: 'Beta 05', duration: '1:15', image: 'https://images.unsplash.com/photo-1565431792530-7eda5a86d510?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fDklM0ExNnxlbnwwfHwwfHx8MA%3D%3D', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4' },
-  { title: 'Beta 06', duration: '0:50', image: 'https://images.unsplash.com/photo-1610274561976-4b5528f54992?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fDklM0ExNnxlbnwwfHwwfHx8MA%3D%3D', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4' },
+  { title: 'Validação de Ideias', duration: '1:00', video2: 'https://player.vimeo.com/video/1010369564?autoplay=1&loop=1&muted=1&autopause=0', video: 'https://player.vimeo.com/video/1010369564?autoplay=1' },
+  { title: 'Tipos de Criadores', duration: '0:45', video2: 'https://player.vimeo.com/video/1010369687?autoplay=1&loop=1&muted=1&autopause=0', video: 'https://player.vimeo.com/video/1010369687?autoplay=1' },
+  { title: 'Entender de Tech', duration: '1:30', video2: 'https://player.vimeo.com/video/1010369636?autoplay=1&loop=1&muted=1&autopause=0', video: 'https://player.vimeo.com/video/1010369636?autoplay=1' },
+  { title: '3 tipos de PMs', duration: '1:00', video2: 'https://player.vimeo.com/video/1010369598?autoplay=1&loop=1&muted=1&autopause=0', video: 'https://player.vimeo.com/video/1010369598?autoplay=1' },
+  { title: 'Progresso vs Movimento', duration: '1:15', video2: 'https://player.vimeo.com/video/1010369754?autoplay=1&loop=1&muted=1&autopause=0', video: 'https://player.vimeo.com/video/1010369754?autoplay=1' },
+  { title: 'Contexto Importa', duration: '0:50', video2: 'https://player.vimeo.com/video/1010369687?autoplay=1&loop=1&muted=1&autopause=0', video: 'https://player.vimeo.com/video/1010369687?autoplay=1' },
 ]
 
 export function CoursePlatform() {
@@ -248,7 +248,15 @@ export function CoursePlatform() {
               }}
             >
               <div className="relative aspect-[9/16]">
-                <img src={short.image} alt={short.title} className="w-full h-full object-cover" />
+                {/* <img src={short.image} alt={short.title} className="w-full h-full object-cover" /> */}
+                <iframe
+                src={short.video2}
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              ></iframe>
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
                   <Play className="h-8 w-8 text-white" />
                 </div>
@@ -279,7 +287,15 @@ export function CoursePlatform() {
             }}
           >
             <div className="relative aspect-[9/16]">
-              <img src={short.image} alt={short.title} className="w-full h-full object-cover" />
+              {/* <img src={short.image} alt={short.title} className="w-full h-full object-cover" /> */}
+              <iframe
+                src={short.video2}
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              ></iframe>
               <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
                 <Play className="h-12 w-12 text-white" />
               </div>
@@ -352,13 +368,21 @@ export function CoursePlatform() {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-              <video
+              {/* <video
                 className="w-full h-full object-cover"
                 src={shorts[currentShort].video}
                 autoPlay
                 loop
                 controls
-              />
+              /> */}
+              <iframe
+                src={shorts[currentShort].video}
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              ></iframe>
               <div className="absolute top-4 right-4">
                 <Button variant="ghost" onClick={() => setShowShortVideo(false)}>
                   <X className="h-6 w-6 text-white" />
