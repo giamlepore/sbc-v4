@@ -9,6 +9,19 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Search, Home, BookOpen, CheckSquare, BarChart2, ChevronRight, Play, Check, X } from 'lucide-react'
 import { useTheme } from "next-themes"
 import { motion } from "framer-motion"
+import { useSession, signIn, signOut } from "next-auth/react"
+import prisma from "@/lib/prisma"
+import { Session } from 'next-auth';
+import { SessionProvider } from "next-auth/react"
+
+interface CustomSession extends Session {
+  user: {
+    id: string;
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  }
+}
 
 const modules = [
   {
@@ -62,6 +75,15 @@ const shorts = [
 ]
 
 export function CoursePlatform() {
+  return (
+    <SessionProvider>
+      <CoursePlatformContent />
+    </SessionProvider>
+  )
+}
+
+function CoursePlatformContent() {
+  const { data: session } = useSession() as { data: CustomSession | null }
   const [currentModule, setCurrentModule] = useState(0)
   const [currentCourse, setCurrentCourse] = useState(0)
   const [completedCourses, setCompletedCourses] = useState<{[key: number]: number[]}>({})
@@ -81,11 +103,37 @@ export function CoursePlatform() {
   const [touchEnd, setTouchEnd] = useState(0)
 
   useEffect(() => {
+    if (session?.user) {
+      // Carregar o progresso do usuário do banco de dados
+      loadUserProgress()
+    }
     setMounted(true)
-  }, [])
+  }, [session])
 
-  const handleComplete = () => {
+  const loadUserProgress = async () => {
+    if (session?.user?.id) {
+      const progress = await fetch(`/api/progress?userId=${session.user.id}`).then(res => res.json())
+      setCompletedCourses(progress)
+    }
+  }
+
+
+  const handleComplete = async () => {
     setShowCheckAnimation(true)
+    if (session?.user?.id) {
+      await fetch('/api/progress', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: session.user.id,
+          moduleId: currentModule,
+          courseId: currentCourse,
+        }),
+      })
+    }
+
     setCompletedCourses(prev => ({
       ...prev,
       [currentModule]: [...(prev[currentModule] || []), currentCourse]
@@ -325,6 +373,20 @@ export function CoursePlatform() {
     return null
   }
 
+  if (status === "loading") {
+    return <div>Loading...</div>
+  }
+  
+  if (!session) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground">
+        <h1 className="text-3xl font-bold mb-4">Welcome to SBC</h1>
+        <p className="mb-8">Please sign in to access the course content.</p>
+        <Button onClick={() => signIn('google')}>Sign In with Google</Button>
+      </div>
+    )
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       {/* Header */}
@@ -337,10 +399,14 @@ export function CoursePlatform() {
               <Input className="pl-8 w-full" placeholder="Search" />
             </div>
           </div>
-          <Avatar onClick={toggleTheme} className="cursor-pointer">
-            <AvatarImage src="/placeholder-user.jpg" alt="@user" />
-            <AvatarFallback>U</AvatarFallback>
-          </Avatar>
+    {session ? (
+      <Avatar onClick={() => signOut()} className="cursor-pointer">
+        <AvatarImage src={session.user.image ?? undefined} alt={session.user.name ?? 'User'} />
+    <AvatarFallback>{session.user.name?.[0] ?? 'U'}</AvatarFallback>
+  </Avatar>
+) : (
+  <Button onClick={() => signIn('google')}>Sign In</Button>
+)}
         </div>
       </header>
 
@@ -435,6 +501,11 @@ export function CoursePlatform() {
                         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
                           <Play className="h-8 w-8 text-white" />
                         </div>
+                        {completedCourses[moduleIndex]?.includes(courseIndex) && (
+                          <div className="absolute top-2 right-2 bg-green-500 rounded-full p-1">
+                            <Check className="h-4 w-4 text-white" />
+                          </div>
+                        )}
                       </div>
                       <div className="p-2">
                         <h3 className="font-semibold text-sm">{course.title}</h3>
