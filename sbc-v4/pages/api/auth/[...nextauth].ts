@@ -33,5 +33,15 @@ export default NextAuth({
       }
       return session as ExtendedSession;
     },
+    async signIn({ user, account, profile, email, credentials }) {
+      const allowedEmails = process.env.ALLOWED_EMAILS?.split(',') || [];
+      if (user.email && allowedEmails.includes(user.email)) {
+        return true;
+      }
+      // Retorna um objeto de erro com uma URL personalizada
+      return '/acesso-negado';
+    }
+    },
   },
-})
+  
+)
