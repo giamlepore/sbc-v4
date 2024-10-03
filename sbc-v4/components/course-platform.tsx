@@ -90,7 +90,7 @@ function CoursePlatformContent() {
   const [activeTab, setActiveTab] = useState('Home 🏠')
   const [showVideo, setShowVideo] = useState(false)
   const [currentShort, setCurrentShort] = useState(0)
-  const [isSwiping, setIsSwiping] = useState(false); // Para controlar o estado da animação
+  const [isSwiping, setIsSwiping] = useState(false)
   const [showShortVideo, setShowShortVideo] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
@@ -101,10 +101,10 @@ function CoursePlatformContent() {
   const [showCheckAnimation, setShowCheckAnimation] = useState(false)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
+  const [lastUncompletedCourse, setLastUncompletedCourse] = useState<{ moduleIndex: number, courseIndex: number } | null>(null)
 
   useEffect(() => {
     if (session?.user) {
-      // Carregar o progresso do usuário do banco de dados
       loadUserProgress()
     }
     setMounted(true)
@@ -114,9 +114,22 @@ function CoursePlatformContent() {
     if (session?.user?.id) {
       const progress = await fetch(`/api/progress?userId=${session.user.id}`).then(res => res.json())
       setCompletedCourses(progress)
+      findLastUncompletedCourse(progress)
     }
   }
 
+  const findLastUncompletedCourse = (progress: {[key: number]: number[]}) => {
+    for (let i = modules.length - 1; i >= 0; i--) {
+      const moduleProgress = progress[i] || []
+      for (let j = modules[i].courses.length - 1; j >= 0; j--) {
+        if (!moduleProgress.includes(j)) {
+          setLastUncompletedCourse({ moduleIndex: i, courseIndex: j })
+          return
+        }
+      }
+    }
+    setLastUncompletedCourse(null)
+  }
 
   const handleComplete = async () => {
     setShowCheckAnimation(true)
@@ -148,17 +161,15 @@ function CoursePlatformContent() {
   const moveToNextLesson = () => {
     const currentModuleCourses = modules[currentModule].courses
     if (currentCourse < currentModuleCourses.length - 1) {
-      // Move to the next lesson in the current module
       setCurrentCourse(currentCourse + 1)
     } else if (currentModule < modules.length - 1) {
-      // Move to the first lesson of the next module
       setCurrentModule(currentModule + 1)
       setCurrentCourse(0)
     } else {
-      // All modules completed
       setShowVideo(false)
       setActiveTab('My Progres ⏳')
     }
+    findLastUncompletedCourse(completedCourses)
   }
 
   const progress = Object.values(completedCourses).flat().length / modules.reduce((acc, module) => acc + module.courses.length, 0) * 100
@@ -192,17 +203,17 @@ function CoursePlatformContent() {
 
   const handleSwipe = (direction: 'up' | 'down') => {
     if (direction === 'up' && currentShort < shorts.length - 1) {
-      setIsSwiping(true); // Inicia a animação
+      setIsSwiping(true)
       setTimeout(() => {
-        setCurrentShort(currentShort + 1);
-        setIsSwiping(false); // Termina a animação
-      }, 300); // Tempo da animação
+        setCurrentShort(currentShort + 1)
+        setIsSwiping(false)
+      }, 300)
     } else if (direction === 'down' && currentShort > 0) {
-      setIsSwiping(true); // Inicia a animação
+      setIsSwiping(true)
       setTimeout(() => {
-        setCurrentShort(currentShort - 1);
-        setIsSwiping(false); // Termina a animação
-      }, 300); // Tempo da animação
+        setCurrentShort(currentShort - 1)
+        setIsSwiping(false)
+      }, 300)
     }
   }
 
@@ -305,7 +316,6 @@ function CoursePlatformContent() {
               }}
             >
               <div className="relative aspect-[9/16]">
-                {/* <img src={short.image} alt={short.title} className="w-full h-full object-cover" /> */}
                 <iframe
                 src={short.video2}
                 width="100%"
@@ -344,7 +354,6 @@ function CoursePlatformContent() {
             }}
           >
             <div className="relative aspect-[9/16]">
-              {/* <img src={short.image} alt={short.title} className="w-full h-full object-cover" /> */}
               <iframe
                 src={short.video2}
                 width="100%"
@@ -367,6 +376,40 @@ function CoursePlatformContent() {
         ))}
       </div>
     )
+  }
+
+  const renderLastUncompletedCourse = () => {
+    if (lastUncompletedCourse) {
+      const { moduleIndex, courseIndex } = lastUncompletedCourse
+      const module = modules[moduleIndex]
+      const course = module.courses[courseIndex]
+      return (
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Continue de onde parou</h2>
+          <div
+            className="bg-card rounded-lg overflow-hidden shadow-sm cursor-pointer"
+            onClick={() => {
+              setCurrentModule(moduleIndex)
+              setCurrentCourse(courseIndex)
+              setShowVideo(true)
+            }}
+          >
+            <div className="relative aspect-video ">
+              <img src={course.image} alt={course.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <Play className="h-12 w-12 text-white" />
+              </div>
+            </div>
+            <div className="p-4">
+              <h3 className="font-semibold text-lg">{course.title}</h3>
+              <p className="text-sm text-muted-foreground">{module.title}</p>
+              <p className="text-sm mt-2">{course.duration}</p>
+            </div>
+          </div>
+        </div>
+      )
+    }
+    return null
   }
 
   if (!mounted) {
@@ -452,19 +495,6 @@ function CoursePlatformContent() {
               onTouchEnd={handleTouchEnd}
               style={{ zIndex: 10 }}
             >
-            {/* <motion.div
-              className="absolute w-full h-full"
-              initial={{ y: 0 }}
-              animate={{ y: isSwiping ? (touchStart - touchEnd > 50 ? '-100%' : '100%') : '0%' }}
-              transition={{ duration: 0.3 }}
-            ></motion.div> */}
-              {/* <video
-                className="w-full h-full object-cover"
-                src={shorts[currentShort].video}
-                autoPlay
-                loop
-                controls
-              /> */}
               </div>
               <div className="absolute top-4 right-4" style={{ zIndex: 11 }}>
                 <Button variant="ghost" onClick={() => setShowShortVideo(false)}>
@@ -479,6 +509,7 @@ function CoursePlatformContent() {
           </div>
         ) : activeTab === 'Home 🏠' ? (
           <>
+            {renderLastUncompletedCourse()}
             {modules.map((module, moduleIndex) => (
               <div key={moduleIndex} className="mb-8">
                 <div className="flex items-center justify-between mb-4">
