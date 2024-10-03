@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const progress = await prisma.progress.findMany({
       where: { userId: userId as string },
     })
-    const formattedProgress = progress.reduce((acc: Record<number, number[]>, curr) => {
+    const formattedProgress = progress.reduce((acc: Record<number, number[]>, curr: { moduleId: number; courseId: number }) => {
         if (!acc[curr.moduleId]) {
           acc[curr.moduleId] = [];
         }
