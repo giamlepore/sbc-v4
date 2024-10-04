@@ -465,7 +465,7 @@ function CoursePlatformContent() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto p-4 bg-white text-black">
+      <main className="flex-1 overflow-auto p-4 bg-gray-100 text-black">
         {showVideo ? (
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-4">{modules[currentModule].courses[currentCourse].title}</h2>
