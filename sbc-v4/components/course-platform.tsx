@@ -510,14 +510,14 @@ function CoursePlatformContent() {
         ) : activeTab === 'Home 🏠' ? (
           <>
             {renderLastUncompletedCourse()}
-            {modules.map((module, moduleIndex) => (
+            {modules.map((moduleItem, moduleIndex) => (
               <div key={moduleIndex} className="mb-8">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-2xl font-bold">{module.title}</h2>
+                  <h2 className="text-2xl font-bold">{moduleItem.title}</h2>
                   <ChevronRight className="h-6 w-6" />
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                  {module.courses.map((course, courseIndex) => (
+                  {moduleItem.courses.map((course, courseIndex) => (
                     <div
                       key={courseIndex}
                       className="bg-card rounded-lg overflow-hidden shadow-sm cursor-pointer"
@@ -554,11 +554,11 @@ function CoursePlatformContent() {
         ) : activeTab === 'Tasks ☑️' ? (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold mb-4">Tasks</h2>
-            {modules.map((module, moduleIndex) => (
+            {modules.map((moduleItem, moduleIndex) => (
               <div key={moduleIndex} className="bg-card p-4 rounded-lg">
-                <h3 className="text-xl font-bold mb-2">{module.title}</h3>
+                <h3 className="text-xl font-bold mb-2">{moduleItem.title}</h3>
                 <ul className="space-y-2">
-                  {module.tasks.map((task, taskIndex) => (
+                  {moduleItem.tasks.map((task, taskIndex) => (
                     <li key={taskIndex} className="flex items-center space-x-2">
                       <Checkbox id={`task-${moduleIndex}-${taskIndex}`} />
                       <label htmlFor={`task-${moduleIndex}-${taskIndex}`} className="text-sm">
@@ -575,11 +575,11 @@ function CoursePlatformContent() {
             <h2 className="text-2xl font-bold mb-4">My Progress</h2>
             <Progress value={progress} className="w-full" />
             <p className="text-center text-lg font-semibold">{Math.round(progress)}% Complete</p>
-            {modules.map((module, moduleIndex) => (
+            {modules.map((moduleItem, moduleIndex) => (
               <div key={moduleIndex} className="bg-card p-4 rounded-lg">
-                <h3 className="text-xl font-bold mb-2">{module.title}</h3>
+                <h3 className="text-xl font-bold mb-2">{moduleItem.title}</h3>
                 <ul className="space-y-2">
-                  {module.courses.map((course, courseIndex) => (
+                  {moduleItem.courses.map((course, courseIndex) => (
                     <li key={courseIndex} className="flex items-center space-x-2">
                       {completedCourses[moduleIndex]?.includes(courseIndex) ? (
                         <Check className="h-5 w-5 text-green-500" />
