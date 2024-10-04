@@ -63,6 +63,18 @@ const modules = [
       { title: 'Sem tarefas, por enquanto', completed: false },
     ]
   },
+  {
+    title: 'Módulo 04, mais perto do que você imagina',
+    courses: [
+      { title: 'Por essa aula, estou ansioso', duration: '25:00', image: '/soon.jpg', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4' },
+      { title: 'Essa daqui, você nem imagina', duration: '18:20', image: '/soon.jpg', video: 'https://player.vimeo.com/video/336265026' },
+      { title: 'Já essa aula, é muito diferente', duration: '22:10', image: '/soon.jpg', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4' },
+    ],
+    tasks: [
+      { title: 'Sem tarefas, por enquanto', completed: false },
+      { title: 'Sem tarefas, por enquanto', completed: false },
+    ]
+  },
 ]
 
 const shorts = [
@@ -381,8 +393,8 @@ function CoursePlatformContent() {
   const renderLastUncompletedCourse = () => {
     if (lastUncompletedCourse) {
       const { moduleIndex, courseIndex } = lastUncompletedCourse
-      const module = modules[moduleIndex]
-      const course = module.courses[courseIndex]
+      const chapter = modules[moduleIndex]
+      const course = chapter.courses[courseIndex]
       return (
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Continue de onde parou</h2>
@@ -402,7 +414,7 @@ function CoursePlatformContent() {
             </div>
             <div className="p-4">
               <h3 className="font-semibold text-lg">{course.title}</h3>
-              <p className="text-sm text-muted-foreground">{module.title}</p>
+              <p className="text-sm text-muted-foreground">{chapter.title}</p>
               <p className="text-sm mt-2">{course.duration}</p>
             </div>
           </div>
@@ -433,8 +445,7 @@ function CoursePlatformContent() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-background border-b">
-        <div className="flex items-center justify-between px-4 py-2 bg-white">
+      <header className="sticky top-0 z-10 bg-background border-b">        <div className="flex items-center justify-between px-4 py-2 bg-white">
           <h1 className="text-2xl font-bold text-black">SBC</h1>
           <div className="flex-1 mx-4">
             <div className="relative">
