@@ -27,8 +27,16 @@ const modules = [
   {
     title: 'Módulo 01: Para começar',
     courses: [
-      { title: 'Aula #001 → O que gostaria de saber antes? Parte 01', duration: '10:00', image: '/thumb.jpg', video: 'https://player.vimeo.com/video/1008575104?badge=0&amp;autopause=0&amp;player_id=0&amp' },
-      { title: 'Aula #002 → O que gostaria de saber antes? Parte 02', duration: '10:00', image: '/thumb.jpg', video: 'https://player.vimeo.com/video/1008575201?badge=0&amp;autopause=0&amp;player_id=0&amp' },
+      { title: 'Aula #001 → O que gostaria de saber antes? Parte 01', duration: '10:00', image: '/a001.png', video: 'https://player.vimeo.com/video/1008575104?badge=0&amp;autopause=0&amp;player_id=0&amp' },
+      { title: 'Aula #002 → O que gostaria de saber antes? Parte 02', duration: '10:00', image: '/a002.png', video: 'https://player.vimeo.com/video/1008575201?badge=0&amp;autopause=0&amp;player_id=0&amp' },
+      { title: 'Aula #003 → Resumo | Qual a melhor ideia para começar?', duration: '10:00', image: '/a003.png', video: 'https://player.vimeo.com/video/1021425887?badge=0&amp;autopause=0&amp;player_id=0&amp' }, 
+      { title: 'Aula #004 → Resumo | Como começar agora?', duration: '10:00', image: '/a004.png', video: 'https://player.vimeo.com/video/1021425908?badge=0&amp;autopause=0&amp;player_id=0&amp' },
+      { title: 'Aula #005 → Resumo | O que perguntar aos usuários?', duration: '10:00', image: '/a005.png', video: 'https://player.vimeo.com/video/1021425926?badge=0&amp;autopause=0&amp;player_id=0&amp' }, 
+      { title: 'Aula #006 → Resumo | Um projeto ou vários?', duration: '10:00', image: '/a006.png', video: 'https://player.vimeo.com/video/1021425943?badge=0&amp;autopause=0&amp;player_id=0&amp' }, 
+      { title: 'Aula #007 → Resumo | Qual problema você resolve?', duration: '10:00', image: '/a007.png', video: 'https://player.vimeo.com/video/1021425962?badge=0&amp;autopause=0&amp;player_id=0&amp' }, 
+      { title: 'Aula #008 → Resumo | Usuário mais fácil primeiro?', duration: '10:00', image: '/a008.png', video: 'https://player.vimeo.com/video/1021425990?badge=0&amp;autopause=0&amp;player_id=0&amp' },
+      { title: 'Aula #009 → Resumo | Colocar no ar ou falar com o usuário primeiro? (Disclaimer)', duration: '10:00', image: '/a009.png', video: 'https://player.vimeo.com/video/1021426008?badge=0&amp;autopause=0&amp;player_id=0&amp' }, 
+      { title: 'Aula #010 → Resumo | Frequência do problema', duration: '10:00', image: '/a010.png', video: 'https://player.vimeo.com/video/1021426033?badge=0&amp;autopause=0&amp;player_id=0&amp' }, 
       { title: 'EXTRA #001: Ferramentas para começar', duration: '14:00', image: '/ferramentas.jpg', video: 'https://player.vimeo.com/video/1008577242?badge=0&amp;autopause=0&amp;player_id=0&amp' },
       { title: 'EXTRA #002: Criando um (belo) site em 26 minutos', duration: '26:00', image: '/vídeo.png', video: 'https://player.vimeo.com/video/1009311054?badge=0&amp;autopause=0&amp' },
     ],
@@ -260,6 +268,23 @@ function CoursePlatformContent() {
     
     return (
       <div className="mt-6 space-y-6">
+        {nextVideos.length > 0 && (
+          <div>
+            <h3 className="text-2xl font-bold mb-4 text-gray-200 font-sans">Next in this module:</h3>
+            <ul className="space-y-2">
+              {nextVideos.map((course, index) => (
+                <li key={index} className="flex items-center p-2 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors duration-300" onClick={() => {
+                  setCurrentCourse(currentCourse + index + 1)
+                }}>
+                  <Play className="h-5 w-5 text-blue-500 flex-shrink-0 mr-2" />
+                  <span className="text-gray-200 font-sans flex-grow truncate">{course.title}</span>
+                  {/* <span className="text-sm text-gray-400 ml-auto font-sans">{course.duration}</span> */}
+                  <div className="h-5 w-5 flex-shrink-0 ml-2" /> {/* Placeholder to maintain consistent spacing */}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         {previousVideos.length > 0 && (
           <div>
             <h3 className="text-2xl font-bold mb-4 text-gray-200 font-sans">Previous in this module:</h3>
@@ -276,23 +301,6 @@ function CoursePlatformContent() {
                   ) : (
                     <div className="h-5 w-5 flex-shrink-0 ml-2" /> // Placeholder to maintain consistent spacing
                   )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {nextVideos.length > 0 && (
-          <div>
-            <h3 className="text-2xl font-bold mb-4 text-gray-200 font-sans">Next in this module:</h3>
-            <ul className="space-y-2">
-              {nextVideos.map((course, index) => (
-                <li key={index} className="flex items-center p-2 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors duration-300" onClick={() => {
-                  setCurrentCourse(currentCourse + index + 1)
-                }}>
-                  <Play className="h-5 w-5 text-blue-500 flex-shrink-0 mr-2" />
-                  <span className="text-gray-200 font-sans flex-grow truncate">{course.title}</span>
-                  {/* <span className="text-sm text-gray-400 ml-auto font-sans">{course.duration}</span> */}
-                  <div className="h-5 w-5 flex-shrink-0 ml-2" /> {/* Placeholder to maintain consistent spacing */}
                 </li>
               ))}
             </ul>
